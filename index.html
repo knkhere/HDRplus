@@ -1,0 +1,269 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>OpenWeatherMap Weather Application</title>
+  
+  
+  <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
+
+      <style>
+		body{
+  background-color:#03A9F4;
+  min-width:540px;
+}
+.title{
+  width:100%;
+}
+body{
+  font-family: Sans-Serif;
+  color:white;
+}
+h1 {
+  margin-top: 20px;
+}
+h4 {
+  text-shadow: 0px 3px rgba(77, 77, 77, 0.5);
+}
+div{ 
+  /*border:1px solid black;*/
+}
+.heading{
+  width:100%;
+}
+.signature{
+  float:left;
+  margin-left:60%;
+  padding-left:5px;
+  padding-bottom:5px;
+}
+.heading,.signature{
+  background:rgba(2,2,2,0.4);
+  border: 1px solid rgba(1,1,1,0);
+  box-shadow:0px 5px 0px 0px rgba(2,2,2,0.2);
+}
+.sign{
+  margin:15px;
+}
+h4 i td{
+  color:white;
+  min-width:2px;
+  white-space: nowrap;
+  text-shadow:none;
+}
+h4 i td:nth-child(odd){
+  background-color:white;
+  font-size:26px;
+  font-weight:bold;
+}
+h4 i td:nth-child(even){
+  text-shadow: 2px -3px 2px rgba(77, 77, 77, 0.8);
+  font-family: 'Pacifico', cursive;
+}
+.sample-div{
+  margin-top:40px;
+  width:150px;
+  height:150px;
+  background-color:#fff;
+  border: 3px solid white; 
+  border-radius: 150px;
+  color: black;
+  padding:5px 15px;
+  display:table;
+  box-shadow: 0px 0px 8px 5px rgba(22,22,22,0.5);
+  transition:transform 0.3s ease-in;
+}
+.sample-div img{
+  display:table-cell;
+  position:center;
+  margin:25px;
+}
+
+.test{
+  margin-top:30px;
+}
+button{
+  color:rgb(77,77,77);
+}
+.container{
+  width:90%;
+  margin-top:40px;
+  height:auto;
+}
+.log{
+  margin-top:200px;
+}
+.empty{
+  height:30px;
+  width:100%;
+}
+.sample-div p{
+  display:table-cell;
+  vertical-align:middle;
+  font-size:1.2em;
+}
+.sample-div div{
+  position:absolute;
+  display: block;
+  margin-top:10px;
+  margin-left:45px;
+}
+#weather_info, #temp_info, #loc_info{
+  font-size:1.7em;
+  margin-top:40px;
+  margin-bottom:20px;
+}
+#temp_info{
+  text-decoration:underline;
+}
+#temp_info:hover{
+  cursor:pointer;
+}
+/*-------------------------------------*/
+/*-------------------------------------*/
+/*-------------------------------------*/
+	  </style>
+
+  
+</head>
+
+<body>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+
+<center>
+  <div class="heading">
+    <div class="title">
+      <h1>HDR+</h1>
+    </div>
+</center>
+<div class="signature">
+  <h4><i>
+    <tr>
+ <div id="sign" style="float:left;">
+   </div>
+    </tr>
+    </i></h4></div>
+</div>
+<div class="container">
+	<center>
+		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+			<div>
+				<p style="font-size:1.2em; padding:15px;">HDRplus is a cutting edge handwriting recognition application.
+				Currently it only supports recognition of handwritten digits.
+				This is because the Neural Network is currently only trained using handwritten digits data-set as of now.
+				The applciation works as follows:
+				The image is first clicked using an Android app(front-end).
+				The image is then pre-processed to segment, enhance, crop, binarize and resize the image(pre-processing).
+				The application has a neural network processing engine that perfroms the major identification of a character from the image(processing).
+				The output is combined with previously recognized data and sent back to the android app UI using a RESTful Web service(web-service).
+				Currently we are able to obtain a recognition at an average accuracy of 90% provided the Android phone camera is not of a very poor quality.
+				Minimum Android version - Android 4.0. 
+				Efforts are constantly being made by the team to improve upon the application. We hope you like it! :)</p>
+			</div>
+			<div> 
+				<img height="30px"  src="http://aiconica.net/previews/ce1d8354f4b693ea77108d396a1fc5e9c73098f418a07c435660adb2e4d2dbfd_100x100.png"> 
+        <img style="padding-left:15px;" height="30px" src="http://aiconica.net/previews/d10ab112990facdefce66f287619a98b4a83d72b4b8677cb5a6587181bb7a1d7_100x100.png">
+       <img  style="padding-left:15px;" height="30px" src="http://aiconica.net/previews/3a541b9bbfca6ec47f499f233fe8a8f41bef5aa79eb635816ba31c25fe3b06cd_100x100.png">
+			</div>
+		</div>
+		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" style="padding:20px;">
+			<img style="margin-bottom:20px" width="100%" src="/screenshot/sc1.png" alt="screenshot 1"> 
+      <img style="margin-bottom:20px" width="100%"  src="/screenshot/sc2.png" alt="screenshot 2" > 
+		</div>
+	</center>
+</div>
+  <br> 
+  <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js'></script>
+
+    <script>
+		function getSign() { 
+  var sign = document.getElementById("sign");
+  var name = "Kanak Sharma".split(" ");
+sign.innerHTML=" ";
+//Adding the name word by word
+  for (i = 0; i < name.length; i++) {
+    //Adding the first letter
+    var newElement = document.createElement('td');
+   newElement.innerHTML = name[i].charAt(0);
+    document.getElementById("sign").appendChild(newElement);
+    // rest of the name
+     var newElement = document.createElement('td');
+   newElement.innerHTML = name[i].slice(1)+'&nbsp;&nbsp;';
+    document.getElementById("sign").appendChild(newElement);
+  }
+}
+
+//Log for Testing Purposes
+/* document.getElementById("log").innerHTML = String(name[i]).charAt[0]+'&nbsp;';  */
+
+$(document).ready( function(){
+   var colorPallette = ['#03A9F4', '#8BC34A', '#FFA726'];
+  //light blue, light green, light orange.
+    $("body").css("background-color",colorPallette[Math.floor(Math.random()*3)]);
+  document.body.style.color = "white";
+  getSign();
+  colorTheText();
+  letTheSunApproximatelyShine();
+});
+function colorTheText(){
+  $('h4 i td:nth-child(odd)').css("color",document.body.style.backgroundColor);
+  $('.sample-div p').css("color",document.body.style.backgroundColor);
+}
+
+function letTheSunShine(){
+    if (navigator.geolocation){  navigator.geolocation.getCurrentPosition(showLocation,letTheSunApproximatelyShine);
+    } else {
+        $('#loc_info').innerHTML = "Browser";
+      $('#weather_info').innerHTML = "not";
+      $('#temp_info').innerHTML = "supported.";
+    }
+}
+function showLocation(position){
+  $('#loc_info').html('Lat: '+position.coords.latitude+'&Lon:'+position.coords.longitude);
+  $.ajax( {
+      url: 'http://api.openweathermap.org/data/2.5/weather?lat='+position.coords.latitude+'&lon='+position.coords.longitude+'&appid=49a55e72241614fcccc232d5d5dc8395',
+      success: function(data){
+ $('#weather_info').html(data.weather[0].main);
+ tempConvert(data.main.temp+'K');  document.getElementById('weather_iconn').css('background',"url('http://openweathermap.org/img/w/'"+data.weather[0].icon+"'.png')");
+      },
+      cache: false
+    });
+}
+function letTheSunApproximatelyShine(error){
+  $.get("http://ipinfo.io", function(response){
+    $("#loc_info").html(response.city+', '+response.country);
+    $.ajax( {
+      url: 'http://api.openweathermap.org/data/2.5/weather?lat='+response.loc.split(",")[0]+'&lon='+response.loc.split(",")[1]+'&appid=49a55e72241614fcccc232d5d5dc8395',
+      success: function(data){
+        tempConvert(data.main.temp+'K');  $('#weather_info').html(data.weather[0].main);
+document.getElementById('weather_iconn').css('background',"url('http://openweathermap.org/img/w/'"+data.weather[0].icon+"'.png')"); 
+      },
+      cache: false
+    }); 
+}, "jsonp");
+  
+}
+function tempConvert(temp){
+  var degree = Number(temp.slice(0,-1));
+  switch(temp.slice(-1)){
+    case 'K'://Kelvin to Celcius
+      $('#temp_info').html(Math.round(degree - 273.15)+'C');
+      break;
+    case 'C'://Celcius to Fahrenheit
+      $('#temp_info').html(Math.round((degree * 9/5) + 32)+'F');
+      break;
+    case 'F'://Fahrenheit to Kelvin
+      $('#temp_info').html(Math.round((degree - 32) * 5/9 + 273.15)+'K');
+      break;
+    default:
+      $('#temp_info').html("Fetching temp...");
+      break;
+  }
+}
+$('#temp_info').on("click",function(){
+  tempConvert($('#temp_info').text());
+});
+	</script>
+
+</body>
+</html>
